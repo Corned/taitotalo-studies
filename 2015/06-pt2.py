@@ -8,10 +8,7 @@ def set_(grid, x, y, value):
     if not grid.get(x).get(y):
         grid[x][y] = 0
 
-    if value is None:
-        grid[x][y] = 1 if grid[x][y] == 0 else 0
-    else:
-        grid[x][y] = value
+    grid[x][y] = max(0, grid[x][y] + value)
 
 
 with open("./06-input.txt", "r") as file:
@@ -35,16 +32,16 @@ with open("./06-input.txt", "r") as file:
                     if cmd == "turn on":
                         set_(grid, x, y, 1)
                     elif cmd == "turn off":
-                        set_(grid, x, y, 0)
+                        set_(grid, x, y, -1)
                     elif cmd == "toggle":
-                        set_(grid, x, y, None)
+                        set_(grid, x, y, 2)
 
     count = 0
     for x in range(1000):
         for y in range(1000):
             try:
                 if grid[x][y]:
-                    count += 1
+                    count += grid[x][y]
             except KeyError:
                 pass
 
