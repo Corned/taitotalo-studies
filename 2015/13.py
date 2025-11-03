@@ -1,4 +1,5 @@
 import re
+import itertools
 
 
 def format_data(lines):
@@ -29,36 +30,21 @@ with open("./13-input.txt", "r") as file:
 
     # person dict[person]'s relationship with dict[person][other_person]'
     happiness = format_data(lines)
+    people = happiness.keys()
 
-    # create a dict of all pairs' values added together
-    mutual_relationship = {}
-    for person_a in happiness:
-        for person_b in happiness[person_a]:
-            a_likes_b = happiness[person_a][person_b]
-            b_likes_a = happiness[person_b][person_a]
+    max_happiness = 0
+    for arrangement in itertools.permutations(people):
+        pair_happiness_sum = 0
+        for index_a, person_a in enumerate(arrangement):
+            index_b = (index_a + 1) % len(arrangement)
+            person_b = arrangement[index_b]
 
-            combined_name = f"{person_a}-{person_b}"
-            combined_name2 = f"{person_b}-{person_a}"
+            pair_happiness = (
+                happiness[person_a][person_b] + happiness[person_b][person_a]
+            )
 
-            print(f"{person_a.ljust(5)} -> {person_b.ljust(5)} = {a_likes_b}")
-            print(f"{person_b.ljust(5)} -> {person_a.ljust(5)} = {b_likes_a}")
+            pair_happiness_sum += pair_happiness
 
-            if combined_name2 not in mutual_relationship:
-                mutual_relationship[combined_name] = a_likes_b + b_likes_a
+        max_happiness = max(max_happiness, pair_happiness_sum)
 
-    # and sort them in descending order
-    mutual_relationship = reversed(
-        sorted(mutual_relationship.items(), key=lambda item: item[1])
-    )
-
-    print("")
-    sum = 0
-    q = []
-    for pair, value in mutual_relationship:
-        a, b = pair.split("-")
-
-        if q.count(a) < 2 and q.count(b) < 2:
-            q += [a, b]
-            sum += value
-
-    print(sum)
+    print(max_happiness)
