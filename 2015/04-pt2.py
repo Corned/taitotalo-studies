@@ -1,6 +1,6 @@
 import hashlib
 
-with open("./04-input.txt", "r") as file:
+with open("./input/04.txt", "r") as file:
     secret_key = file.read().strip()
 
     i = 0

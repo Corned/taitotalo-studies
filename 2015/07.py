@@ -28,7 +28,7 @@ def get_wire_value(wires, wire):
     return get_wire_value(wires, wires[wire])
 
 
-with open("./07-input.txt", "r") as file:
+with open("./input/07.txt", "r") as file:
     lines = file.readlines()
     wires = {}
     data = {}

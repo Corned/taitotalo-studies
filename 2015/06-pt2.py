@@ -11,7 +11,7 @@ def set_(grid, x, y, value):
     grid[x][y] = max(0, grid[x][y] + value)
 
 
-with open("./06-input.txt", "r") as file:
+with open("./input/06.txt", "r") as file:
     directions = file.readlines()
     grid = {}
     lights_on = 0

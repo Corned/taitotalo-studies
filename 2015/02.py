@@ -1,4 +1,4 @@
-with open("./02-input.txt", "r") as file:
+with open("./input/02.txt", "r") as file:
     presents = file.readlines()
     # "3x2x1 -> ['3', '2', '1']
     # split string into list

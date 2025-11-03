@@ -25,7 +25,7 @@ def format_data(lines):
     return happiness
 
 
-with open("./13-input.txt", "r") as file:
+with open("./input/13.txt", "r") as file:
     lines = file.readlines()
 
     # person dict[person]'s relationship with dict[person][other_person]'

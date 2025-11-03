@@ -1,4 +1,4 @@
-with open("./08-input.txt", "r") as file:
+with open("./input/08.txt", "r") as file:
     lines = file.readlines()
 
     code_characters = sum([len(line.strip()) for line in lines])

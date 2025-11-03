@@ -1,6 +1,6 @@
 import re
 
-with open("./09-input.txt", "r") as file:
+with open("./input/09.txt", "r") as file:
     lines = file.readlines()
     city_data = {}
 

@@ -1,4 +1,4 @@
-with open("./05-input.txt", "r") as file:
+with open("./input/05.txt", "r") as file:
     lines = file.readlines()
 
     nice_words = 0

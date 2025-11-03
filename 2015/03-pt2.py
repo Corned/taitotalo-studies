@@ -1,4 +1,4 @@
-with open("./03-input.txt", "r") as file:
+with open("./input/03.txt", "r") as file:
     directions = file.read().strip()
 
     x, y = 0, 0
