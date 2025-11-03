@@ -46,6 +46,7 @@ with open("./13-input.txt", "r") as file:
             if combined_name2 not in mutual_relationship:
                 mutual_relationship[combined_name] = a_likes_b + b_likes_a
 
+    # and sort them in descending order
     mutual_relationship = reversed(
         sorted(mutual_relationship.items(), key=lambda item: item[1])
     )
