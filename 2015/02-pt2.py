@@ -1,14 +1,14 @@
 with open("./input/02.txt", "r") as file:
     presents = file.readlines()
+
     # "3x2x1 -> ['3', '2', '1']
-    # split string into list
-    presents = [present.strip().split("x") for present in presents]
-    dimensions = []
+    presents: list[list[str]] = [present.strip().split("x") for present in presents]
+    dimensions: list[list[int]] = []
 
     # ['3', '2', '1'] -> [1, 2, 3]
     # convert to int and sort
     for present in presents:
-        dimensions.append(sorted(list(map(lambda s: int(s), present))))
+        dimensions.append(sorted([int(n) for n in present]))
 
     sum = 0
     for dimension in dimensions:
