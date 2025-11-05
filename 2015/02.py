@@ -2,7 +2,7 @@ with open("./input/02.txt", "r") as file:
     presents = file.readlines()
 
     # "3x2x1 -> ['3', '2', '1']
-    presents = [present.strip().split("x") for present in presents]
+    presents: list[list[str]] = [present.strip().split("x") for present in presents]
 
     # ['3', '2', '1'] -> [1, 2, 3]
     # convert to int and sort
