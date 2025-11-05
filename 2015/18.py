@@ -6,6 +6,9 @@ import math
 WIDTH = 100
 HEIGHT = 100
 
+STR_ON = "#"
+STR_OFF = " "
+
 
 def parse(lines: list[str]) -> list[int]:
     data = []
@@ -61,7 +64,7 @@ def iterate(old_state: list[int]) -> list[int]:
 def print_state(state: list[int]):
     state_string = ""
     for index, value in enumerate(state):
-        state_string += "#" if value == 1 else "."
+        state_string += STR_ON if value == 1 else STR_OFF
         if index % WIDTH == WIDTH - 1:
             state_string += "\n"
 
