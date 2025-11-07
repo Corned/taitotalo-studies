@@ -21,7 +21,7 @@ def parse(lines: list[str]):
     return data, molecule
 
 
-with open("input/19.txt", "r") as file:
+with open("input_19.txt", "r") as file:
     lines = file.readlines()
     pairs, molecule = parse(lines)
 
@@ -35,5 +35,22 @@ with open("input/19.txt", "r") as file:
 
     molecule_data = re.findall("([A-Z]{1}[a-z]?)", molecule)
 
-    pprint(replacement_data)
-    pprint(molecule_data)
+    # pprint(replacement_data)
+    # print(molecule_data)
+    unique_strings = set()
+
+    for pointer in range(len(molecule_data)):
+        left_half = molecule_data[:pointer]
+        right_half = molecule_data[pointer + 1 :]
+        to_replace = molecule_data[pointer]
+
+        if not replacement_data.get(to_replace):
+            print("Cannot replace", to_replace)
+            continue
+
+        for replace_with in replacement_data[to_replace]:
+            string = "".join([*left_half, replace_with, *right_half])
+            print(str(pointer).rjust(5, " "), string[0:10])
+            unique_strings.add(string)
+
+    print(f"Answer: {len(unique_strings)}")
