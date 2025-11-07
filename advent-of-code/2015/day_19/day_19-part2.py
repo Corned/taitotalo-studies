@@ -43,7 +43,7 @@ def iterate(
         iterate(replacement_data, new_mol, iteration + 1)
 
 
-with open("input_19.txt", "r") as file:
+with open("input.txt", "r") as file:
     lines: list[str] = file.readlines()
     (pairs, start_mol) = parse(lines)
 

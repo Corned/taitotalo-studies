@@ -1,4 +1,4 @@
-with open("./input/01.txt", "r") as file:
+with open("input.txt", "r") as file:
     text = file.read().strip()
 
     floor = 0

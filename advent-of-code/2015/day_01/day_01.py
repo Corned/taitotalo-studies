@@ -5,7 +5,7 @@ folder = Path(__file__).parent
 
 
 def part1():
-    with open(folder / "input_01.txt", "r") as file:
+    with open(folder / "input.txt", "r") as file:
         text = file.read()
 
     floor = text.count("(") - text.count(")")
@@ -13,7 +13,7 @@ def part1():
 
 
 def part2():
-    with open(folder / "input_01.txt", "r") as file:
+    with open(folder / "input.txt", "r") as file:
         text = file.read().strip()
 
     floor = 0

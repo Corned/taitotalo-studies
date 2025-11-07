@@ -21,7 +21,7 @@ def parse(lines: list[str]):
     return data, molecule
 
 
-with open("input_19.txt", "r") as file:
+with open("input.txt", "r") as file:
     lines = file.readlines()
     pairs, molecule = parse(lines)
 
