@@ -32,9 +32,21 @@ def main():
     day_numbers = [day.name[4:] for day in day_dirs]
     formatted_days = format(day_numbers, item_length=3)
     select_day_prompt = f"Enter day (e.g. 2):\n{formatted_days}\n> "
-    selected_day = int(input(select_day_prompt))
+    selected_day = day_dirs[int(input(select_day_prompt)) - 1]
+    python_file = selected_day / f"day_01.py"
 
-    print(day_dirs[selected_day - 1])
+    if python_file.exists():
+        print("running", python_file)
+        part1_answer = subprocess.run(
+            ["python3", str(python_file), "1"], capture_output=True, text=True
+        )
+        part2_answer = subprocess.run(
+            ["python3", str(python_file), "2"], capture_output=True, text=True
+        )
+
+        print("\n" + "=" * 50)
+        print(f"Part 1 {part1_answer.stdout}")
+        print(f"Part 2 {part2_answer.stdout}")
 
     pass
 
