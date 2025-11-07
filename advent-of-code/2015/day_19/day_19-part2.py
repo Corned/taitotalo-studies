@@ -1,6 +1,4 @@
 import re
-import time
-from pprint import pprint
 
 
 def parse(lines: list[str]):
