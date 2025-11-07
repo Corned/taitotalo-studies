@@ -1,10 +1,11 @@
 import re
 import time
+from pprint import pprint
 
 
 def parse(lines: list[str]):
-    data = []
-    molecule = None
+    data: list[tuple] = []
+    starting_mol = None
 
     for line in lines:
         line = line.strip()
@@ -16,63 +17,43 @@ def parse(lines: list[str]):
         if match:
             data.append(match.groups())
         else:
-            molecule = line
+            starting_mol = line
 
-    return data, molecule
+    return data, starting_mol
+
+
+def iterate(
+    replacement_data: list[tuple[str, str]],
+    current_mol: str,
+    iteration: int = 0,
+):
+    # print("depth", iteration, current_mol)
+
+    for from_mol, to_mol in replacement_data:
+        if from_mol not in current_mol:
+            continue
+
+        new_mol: str = current_mol.replace(from_mol, to_mol, 1)
+        # print(current_mol, f"-> replacing {from_mol} with {to_mol} -> {new_mol}")
+
+        if new_mol == "e":
+            print(f"Found '{new_mol}' after {iteration} iterations.")
+            exit(1)
+
+        iterate(replacement_data, new_mol, iteration + 1)
 
 
 with open("input_19.txt", "r") as file:
-    lines = file.readlines()
-    pairs, target_molecule = parse(lines)
+    lines: list[str] = file.readlines()
+    (pairs, start_mol) = parse(lines)
 
-    # format pairs into a better format
-    replacement_data = {}
+    # Reversed mapping compared to part-1
+    replacement_data: list[tuple[str, str]] = []
     for mol_a, mol_b in pairs:
-        if not replacement_data.get(mol_a):
-            replacement_data[mol_a] = []
+        replacement_data.append((mol_b, mol_a))
 
-        replacement_data[mol_a].append(mol_b)
+    replacement_data = sorted(
+        replacement_data, key=lambda item: len(item[0]), reverse=True
+    )
 
-    unique_strings = set()
-    molecules = [["e"]]
-    iteration = 0
-
-    while True:
-        time.sleep(1)
-        iteration += 1
-        new_molecules = []
-
-        print(
-            f"iter. {str(iteration).rjust(2, '0')} -- Processing {len(molecules)} molecules..."
-        )
-
-        print(f"\tExample molecule: {''.join(molecules[0])}")
-
-        for molecule in molecules:
-            for pointer in range(len(molecule)):
-                left_half = molecule[:pointer]
-                right_half = molecule[pointer + 1 :]
-                to_replace = molecule[pointer]
-
-                if not replacement_data.get(to_replace):
-                    continue
-
-                for replace_with in replacement_data[to_replace]:
-                    replacement = re.findall("([A-Z]{1}[a-z]?)", replace_with)
-                    new_molecule = [*left_half, *replacement, *right_half]
-                    new_molecule_string = "".join(new_molecule)
-
-                    if new_molecule_string == target_molecule:
-                        print(f"Answer: {iteration}")
-                        exit(1)
-
-                    if new_molecule_string in unique_strings:
-                        continue
-
-                    if len(new_molecule_string) > len(target_molecule):
-                        continue
-
-                    unique_strings.add(new_molecule_string)
-                    new_molecules = [new_molecule, *new_molecules]
-
-        molecules = new_molecules
+    iterate(replacement_data, start_mol, 1)
