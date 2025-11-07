@@ -34,9 +34,6 @@ with open("input_19.txt", "r") as file:
         replacement_data[mol_a].append(mol_b)
 
     molecule_data = re.findall("([A-Z]{1}[a-z]?)", molecule)
-
-    # pprint(replacement_data)
-    # print(molecule_data)
     unique_strings = set()
 
     for pointer in range(len(molecule_data)):
@@ -45,12 +42,10 @@ with open("input_19.txt", "r") as file:
         to_replace = molecule_data[pointer]
 
         if not replacement_data.get(to_replace):
-            print("Cannot replace", to_replace)
             continue
 
         for replace_with in replacement_data[to_replace]:
             string = "".join([*left_half, replace_with, *right_half])
-            print(str(pointer).rjust(5, " "), string[0:10])
             unique_strings.add(string)
 
     print(f"Answer: {len(unique_strings)}")
