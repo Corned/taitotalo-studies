@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tehtävä: Luo HTML -sivu mallista</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .page-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border: 2px solid #666;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        em {
+            font-style: italic;
+        }
+        a {
+            color: #00aa00;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .image-container {
+            margin: 20px 0;
+            border: 1px solid #999;
+            padding: 0;
+            display: inline-block;
+            background-color: white;
+            max-width: 290px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .image-container img {
+            display: block;
+            max-width: 290px;
+            height: auto;
+        }
+        .caption {
+            margin: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+        .caption a {
+            color: #00aa00;
+        }
+        .footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+        .footer a {
+            color: #00aa00;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-title">Tehtävä: Luo HTML -sivu mallista</div>
+    
+    <div class="container">
+        <h1>Mutinan sota</h1>
+        
+        <p><strong>Mutinan sota</strong> on vuonna 43 eaa. käyty <strong>Rooman sisällissota</strong>, joka käytiin <em>Marcus Antoniuksen</em> ja hänen vastustajiensa välillä. <em>Antonius</em> piiritti Mutinassa (nyk. <a href="#">Modena</a>) yhtä <em>Caesarin</em> murhaajista, <em>Decimus Junius Brutus</em> Albinusta, jota auttamaan saapuivat senatiin lähettämät konsult <em>Aulus Hirtius</em> ja <em>Gaius Vibius Pansa Caetronianus</em>.</p>
+        
+        <p>Sota päättyi, kun Antonius ja Octavianus muodostivat toisen <strong>triumviraatin</strong>, jonka kolmanneksi jäseneksi otettiin <em>Lepidus</em>.</p>
+        
+        <div class="image-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Illus266_-_Marcus_Antonius.png" alt="Marcus Antonius">
+            <div class="caption">
+                <a href="#">Marcus Antonius</a> oli Julius Caesarin tärkeimpiä alaisia. Caesarin murhan jälkeen hän nousi Caesarin kannattajien johtajaksi.
+            </div>
+        </div>
+        
+        <div class="footer">
+            Teksti: <a href="#">Mutinan sota - Wikipedia</a>
+        </div>
+    </div>
+</body>
+</html>
